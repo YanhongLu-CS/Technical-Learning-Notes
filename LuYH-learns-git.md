@@ -1,32 +1,35 @@
+Chatgpt dialogue url: https://chatgpt.com/share/6a9b82c3-f35c-83e8-9659-ccb61c25b61d
 # 1.主要命令
 
-| 场景    | 命令                            | 作用             |
-| ----- | ----------------------------- | -------------- |
-| 初始化仓库 | `git init`                    | 在当前目录创建 Git 仓库 |
-| 克隆项目  | `git clone <url>`             | 下载远程仓库到本地      |
-| 查看状态  | `git status`                  | 查看文件修改、暂存情况    |
-| 查看修改  | `git diff`                    | 查看尚未暂存的改动      |
-| 暂存文件  | `git add <file>`              | 把指定文件加入暂存区     |
-| 暂存全部  | `git add .`                   | 暂存当前目录下所有修改    |
-| 提交代码  | `git commit -m "message"`     | 提交暂存区内容        |
-| 查看历史  | `git log`                     | 查看提交记录         |
-| 简洁历史  | `git log --oneline`           | 一行显示一个提交       |
-| 查看分支  | `git branch`                  | 查看本地分支         |
-| 创建分支  | `git branch <name>`           | 新建分支           |
-| 切换分支  | `git switch <name>`           | 切换到分支          |
-| 创建并切换 | `git switch -c <name>`        | 新建并切换分支        |
-| 合并分支  | `git merge <branch>`          | 将指定分支合并到当前分支   |
-| 查看远程  | `git remote -v`               | 查看远程仓库地址       |
-| 添加远程  | `git remote add <name> <url>` | 添加远程仓库地址       |
-| 拉取代码  | `git pull`                    | 获取远程更新并合并      |
-| 获取更新  | `git fetch`                   | 获取远程更新，但不自动合并  |
-| 推送代码  | `git push`                    | 将本地提交推到远程      |
-| 首次推分支 | `git push -u origin <branch>` | 推送并建立远程跟踪关系    |
-| 临时保存  | `git stash`                   | 暂存当前未提交的修改     |
-| 恢复暂存  | `git stash pop`               | 恢复最近一次 stash   |
-| 查看标签  | `git tag`                     | 查看标签           |
-| 创建标签  | `git tag v1.0.0`              | 创建版本标签         |
-|       |                               |                |
+| 场景    | 命令                            | 作用                      |
+| ----- | ----------------------------- | ----------------------- |
+| 初始化仓库 | `git init`                    | 在当前目录创建 Git 仓库          |
+| 克隆项目  | `git clone <url>`             | 下载远程仓库到本地               |
+| 查看状态  | `git status`                  | 查看文件修改、暂存情况             |
+| 查看修改  | `git diff`                    | 查看尚未暂存的改动               |
+| 暂存文件  | `git add <file>`              | 把指定文件加入暂存区              |
+| 暂存全部  | `git add .`                   | 暂存当前目录下所有修改             |
+| 提交代码  | `git commit -m "message"`     | 提交暂存区内容                 |
+| 查看历史  | `git log`                     | 查看提交记录                  |
+| 简洁历史  | `git log --oneline`           | 一行显示一个提交                |
+| 查看分支  | `git branch`                  | 查看本地分支                  |
+| 创建分支  | `git branch <name>`           | 新建分支                    |
+| 切换分支  | `git switch <name>`           | 切换到分支                   |
+| 创建并切换 | `git switch -c <name>`        | 新建并切换分支                 |
+| 合并分支  | `git merge <branch>`          | 将指定分支合并到当前分支            |
+| 查看远程  | `git remote -v`               | 查看远程仓库地址                |
+| 添加远程  | `git remote add <name> <url>` | 添加远程仓库地址                |
+| 拉取代码  | `git pull`                    | 获取远程更新并合并               |
+| 获取更新  | `git fetch`                   | 获取远程更新，但不自动合并           |
+| 推送代码  | `git push`                    | 将本地提交推到远程               |
+| 首次推分支 | `git push -u origin <branch>` | 推送并建立远程跟踪关系             |
+| 临时保存  | `git stash`                   | 暂存当前未提交的修改              |
+| 恢复暂存  | `git stash pop`               | 恢复最近一次 stash            |
+| 查看标签  | `git tag`                     | 查看标签                    |
+| 创建标签  | `git tag v1.0.0`              | 创建版本标签                  |
+| 撤销修改  | `git restore file.txt`        | 撤销文件修改到上一次commit        |
+| 撤销暂存  | `git restore --staged <file>` | 撤销`git add <file>`，不改代码 |
+|       |                               |                         |
 
 # 2.常见疑问
 ## 1.初始化仓库并连接远程
@@ -88,10 +91,15 @@ git stash pop
 恢复 stash
 并且成功后删除这条 stash
 ```
+
 ## 3.刚commit，发现漏了一个文件，怎么办
 先暂存：
-`git add <name>`
+`git add <file>`
 然后amend：
 `git commit --amend -m "message"` or `git commit --amend --no-edit`
 
-
+## 4.要是已经push，又想改远程历史怎么办
+优先：
+`git push --force-with-lease` 会查看远程是否有别的提交
+谨慎使用：
+`git push --force` 直接强制覆盖远程

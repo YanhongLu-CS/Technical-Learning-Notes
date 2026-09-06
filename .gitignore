@@ -1,3 +1,6 @@
 .obsidian/
 .cache/
 .vscode/
+data/
+.DS_Store
+figures/
